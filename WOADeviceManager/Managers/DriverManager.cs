@@ -24,30 +24,9 @@ namespace WOADeviceManager.Managers
             {
                 MainPage.SetStatus("Downloading latest Driver Package for your device...", Title: "Servicing Windows Drivers", SubTitle: "WOA Device Manager is preparing your phone to be serviced with the latest drivers available for it. This may take a while.", Emoji: "🪟");
 
-                if (DeviceManager.Device.Product == DeviceProduct.Epsilon)
+                if (DeviceManager.Device.Product == DeviceProduct.Vayu)
                 {
-                    StorageFile driverPackage = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.DRIVERS_EPSILON, true);
-                    if (driverPackage == null)
-                    {
-                        MainPage.SetStatus();
-                        return false;
-                    }
-
-                    MainPage.SetStatus("Preparing to extract Driver Package...", Title: "Servicing Windows Drivers", SubTitle: "WOA Device Manager is preparing your phone to be serviced with the latest drivers available for it. This may take a while.", Emoji: "🪟");
-
-                    string destinationPath = Path.Combine((await driverPackage.GetParentAsync()).Path, Path.GetFileNameWithoutExtension(driverPackage.Name));
-                    if (Directory.Exists(destinationPath))
-                    {
-                        Directory.Delete(destinationPath, true);
-                    }
-                    Directory.CreateDirectory(destinationPath);
-                    SevenZipFileExtractToDirectory(driverPackage.Path, destinationPath, true);
-
-                    DriverRepo = destinationPath;
-                }
-                else if (DeviceManager.Device.Product == DeviceProduct.Zeta)
-                {
-                    StorageFile driverPackage = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.DRIVERS_ZETA, true);
+                    StorageFile driverPackage = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.DRIVERS_VAYU, true);
                     if (driverPackage == null)
                     {
                         MainPage.SetStatus();
@@ -76,13 +55,9 @@ namespace WOADeviceManager.Managers
 
             string DriverDefinitions;
 
-            if (DeviceManager.Device.Product == DeviceProduct.Epsilon)
+            if (DeviceManager.Device.Product == DeviceProduct.Vayu)
             {
-                DriverDefinitions = $"{DriverRepo}\\definitions\\Desktop\\ARM64\\Internal\\epsilon.xml";
-            }
-            else if (DeviceManager.Device.Product == DeviceProduct.Zeta)
-            {
-                DriverDefinitions = $"{DriverRepo}\\definitions\\Desktop\\ARM64\\Internal\\zeta.xml";
+                DriverDefinitions = $"{DriverRepo}\\definitions\\Desktop\\ARM64\\Internal\\vayu.xml";
             }
             else
             {

@@ -9,7 +9,7 @@ namespace WOADeviceManager.Helpers
     {
         public static async Task<string> GetLatestBSPReleaseVersion()
         {
-            return await GetLatestGithubReleaseVersion("https://github.com/WOA-Project/SurfaceDuo-Releases");
+            return await GetLatestGithubReleaseVersion("https://github.com/woa-vayu-archive/POCOX3Pro-Releases");
         }
 
         public static async Task<string> GetLatestWOADeviceManagerVersion()

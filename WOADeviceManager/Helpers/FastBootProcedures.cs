@@ -188,14 +188,9 @@ namespace WOADeviceManager.Helpers
 
         public static async Task<bool> BootTWRP()
         {
-            if (DeviceManager.Device.Product == DeviceProduct.Epsilon)
+            if (DeviceManager.Device.Product == DeviceProduct.Vayu)
             {
-                StorageFile TWRP = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.TWRP_EPSILON, true);
-                return TWRP != null && DeviceManager.Device.FastBootTransport.BootImageIntoRam(TWRP.Path);
-            }
-            else if (DeviceManager.Device.Product == DeviceProduct.Zeta)
-            {
-                StorageFile TWRP = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.TWRP_ZETA, true);
+                StorageFile TWRP = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.TWRP_VAYU, true);
                 return TWRP != null && DeviceManager.Device.FastBootTransport.BootImageIntoRam(TWRP.Path);
             }
             else
@@ -208,31 +203,15 @@ namespace WOADeviceManager.Helpers
         {
             if (string.IsNullOrEmpty(UEFIFile))
             {
-                if (DeviceManager.Device.Product == DeviceProduct.Epsilon)
+                if (DeviceManager.Device.Product == DeviceProduct.Vayu)
                 {
-                    StorageFile UEFI = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.UEFI_EPSILON, true);
+                    StorageFile UEFI = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.UEFI_VAYU, true);
                     if (UEFI == null)
                     {
                         return false;
                     }
 
-                    string destinationPath = (await UEFI.GetParentAsync()).Path;
-                    ZipFile.ExtractToDirectory(UEFI.Path, destinationPath, true);
-
-                    UEFIFile = $"{destinationPath}\\Surface Duo (1st Gen) UEFI (Fast Boot)\\uefi.img";
-                }
-                else if (DeviceManager.Device.Product == DeviceProduct.Zeta)
-                {
-                    StorageFile UEFI = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.UEFI_ZETA, true);
-                    if (UEFI == null)
-                    {
-                        return false;
-                    }
-
-                    string destinationPath = (await UEFI.GetParentAsync()).Path;
-                    ZipFile.ExtractToDirectory(UEFI.Path, destinationPath, true);
-
-                    UEFIFile = $"{destinationPath}\\Surface Duo 2 UEFI (Fast Boot)\\uefi.img";
+                    UEFIFile = UEFI.Path;
                 }
                 else
                 {

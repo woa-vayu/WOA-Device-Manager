@@ -15,19 +15,13 @@ namespace WOADeviceManager.Managers
     {
         public enum DownloadableComponent
         {
-            DRIVERS_EPSILON,
-            DRIVERS_ZETA,
-            FD_EPSILON,
-            FD_SECUREBOOT_DISABLED_EPSILON,
-            FD_SECUREBOOT_DISABLED_ZETA,
-            FD_ZETA,
+            DRIVERS_VAYU,
+            FD_VAYU,
+            FD_SECUREBOOT_DISABLED_VAYU,
             PARTED,
-            TWRP_EPSILON,
-            TWRP_ZETA,
-            UEFI_EPSILON,
-            UEFI_SECUREBOOT_DISABLED_EPSILON,
-            UEFI_SECUREBOOT_DISABLED_ZETA,
-            UEFI_ZETA
+            TWRP_VAYU,
+            UEFI_VAYU,
+            UEFI_SECUREBOOT_DISABLED_VAYU,
         }
 
         public static async Task<StorageFile> RetrieveFile(DownloadableComponent component, bool redownload = false)
@@ -43,64 +37,34 @@ namespace WOADeviceManager.Managers
                     fileName = "parted";
                     break;
 
-                case DownloadableComponent.TWRP_EPSILON:
-                    downloadPath = "https://github.com/WOA-Project/SurfaceDuo-Guides/raw/main/Files/surfaceduo1-twrp.img";
-                    fileName = "surfaceduo1-twrp.img";
+                case DownloadableComponent.TWRP_VAYU:
+                    downloadPath = "https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro/releases/download/Recoveries/shrp-3.2_12-vayu.img";
+                    fileName = "shrp-3.2_12-vayu.img";
                     break;
-                case DownloadableComponent.UEFI_EPSILON:
+                case DownloadableComponent.UEFI_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Fast.Boot.zip";
-                    fileName = $"Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Fast.Boot.zip";
+                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.img";
+                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.img";
                     break;
-                case DownloadableComponent.UEFI_SECUREBOOT_DISABLED_EPSILON:
+                case DownloadableComponent.UEFI_SECUREBOOT_DISABLED_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Secure.Boot.Disabled.Fast.Boot.zip";
-                    fileName = $"Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Secure.Boot.Disabled.Fast.Boot.zip";
+                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
+                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
                     break;
-                case DownloadableComponent.FD_EPSILON:
+                case DownloadableComponent.FD_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
                     break;
-                case DownloadableComponent.FD_SECUREBOOT_DISABLED_EPSILON:
+                case DownloadableComponent.FD_SECUREBOOT_DISABLED_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"Surface.Duo.1st.Gen.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
                     break;
-                case DownloadableComponent.DRIVERS_EPSILON:
+                case DownloadableComponent.DRIVERS_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/SurfaceDuo-Drivers-v{releaseVersion}-Desktop-Epsilon.7z";
-                    fileName = $"SurfaceDuo-Drivers-v{releaseVersion}-Desktop-Epsilon.7z";
-                    break;
-
-                case DownloadableComponent.TWRP_ZETA:
-                    downloadPath = "https://github.com/WOA-Project/SurfaceDuo-Guides/raw/main/Files/surfaceduo2-twrp.img";
-                    fileName = "surfaceduo2-twrp.img";
-                    break;
-                case DownloadableComponent.UEFI_ZETA:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.2.UEFI-v{releaseVersion}.Fast.Boot.zip";
-                    fileName = $"Surface.Duo.2.UEFI-v{releaseVersion}.Fast.Boot.zip";
-                    break;
-                case DownloadableComponent.UEFI_SECUREBOOT_DISABLED_ZETA:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.2.UEFI-v{releaseVersion}.Secure.Boot.Disabled.Fast.Boot.zip";
-                    fileName = $"Surface.Duo.2.UEFI-v{releaseVersion}.Secure.Boot.Disabled.Fast.Boot.zip";
-                    break;
-                case DownloadableComponent.FD_ZETA:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.2.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"Surface.Duo.2.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    break;
-                case DownloadableComponent.FD_SECUREBOOT_DISABLED_ZETA:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/Surface.Duo.2.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"Surface.Duo.2.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    break;
-                case DownloadableComponent.DRIVERS_ZETA:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/WOA-Project/SurfaceDuo-Releases/releases/download/{releaseVersion}/SurfaceDuo-Drivers-v{releaseVersion}-Desktop-Zeta.7z";
-                    fileName = $"SurfaceDuo-Drivers-v{releaseVersion}-Desktop-Zeta.7z";
+                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCOX3Pro-Drivers-v{releaseVersion}-Desktop.7z";
+                    fileName = $"POCOX3Pro-Drivers-v{releaseVersion}-Desktop.7z";
                     break;
             }
             return await RetrieveFile(downloadPath, fileName, redownload);
