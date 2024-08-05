@@ -538,6 +538,8 @@ namespace WOADeviceManager.Managers
 
                     bool result = fastBootTransport.GetVariable("product", out string productGetVar);
                     string ProductName = !result ? null : productGetVar;
+                    result = fastBootTransport.GetVariable("version-baseband", out string versionBaseBand);
+                    bool isUEFI = !result ? false : versionBaseBand == "1.0.0.0";
                     result = fastBootTransport.GetVariable("is-userspace", out productGetVar);
                     string IsUserSpace = !result ? null : productGetVar;
 
@@ -581,7 +583,11 @@ namespace WOADeviceManager.Managers
                                     NotifyDeviceDeparture();
                                 }
 
-                                if (IsUserSpace == "yes")
+                                if (isUEFI)
+                                {
+                                    Device.State = DeviceState.UEFI;
+                                }
+                                else if (IsUserSpace == "yes")
                                 {
                                     Device.State = DeviceState.FASTBOOTD;
                                 }
@@ -594,6 +600,7 @@ namespace WOADeviceManager.Managers
                                 Device.Name = VAYU_FRIENDLY_NAME;
                                 Device.Variant = DeviceVariant;
                                 Device.Product = DeviceProduct.Vayu;
+
 
                                 if (Device.FastBootTransport != null && Device.FastBootTransport != fastBootTransport)
                                 {
