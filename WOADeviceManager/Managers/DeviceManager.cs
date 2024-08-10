@@ -22,7 +22,7 @@ namespace WOADeviceManager.Managers
         private const string VAYU_TWRP_USBID1 = "USB#VID_2717&PID_D001";
         private const string VAYU_TWRP_USBID2 = "USB#VID_18D1&PID_D001";
 
-        private const string VAYU_PLATFORMID = "Xiaomi.Surface.POCO X3 Pro.vayu";
+        private const string VAYU_PLATFORMID = "Xiaomi.SDM855.POCO X3 Pro.vayu";
 
         private const string ADB_USB_INTERFACEGUID = "{dee824ef-729b-4a0e-9c14-b7117d33a817}";
 

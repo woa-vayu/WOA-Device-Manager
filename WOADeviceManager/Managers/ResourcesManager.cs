@@ -38,32 +38,32 @@ namespace WOADeviceManager.Managers
                     break;
 
                 case DownloadableComponent.TWRP_VAYU:
-                    downloadPath = "https://github.com/woa-vayu/Port-Windows-11-POCO-X3-Pro/releases/download/Recoveries/shrp-3.2_12-vayu.img";
+                    downloadPath = "https://github.com/woa-vayu/POCOX3Pro-Guides/releases/download/Recoveries/shrp-3.2_12-vayu.img";
                     fileName = "shrp-3.2_12-vayu.img";
                     break;
                 case DownloadableComponent.UEFI_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.img";
+                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.img";
                     fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.img";
                     break;
                 case DownloadableComponent.UEFI_SECUREBOOT_DISABLED_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
+                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
                     fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
                     break;
                 case DownloadableComponent.FD_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
                     fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
                     break;
                 case DownloadableComponent.FD_SECUREBOOT_DISABLED_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
+                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
                     fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
                     break;
                 case DownloadableComponent.DRIVERS_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu-archive/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCOX3Pro-Drivers-v{releaseVersion}-Desktop.7z";
+                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCOX3Pro-Drivers-v{releaseVersion}-Desktop.7z";
                     fileName = $"POCOX3Pro-Drivers-v{releaseVersion}-Desktop.7z";
                     break;
             }
