@@ -26,6 +26,8 @@
 		<PublishReadyToRun Condition="'$(Configuration)' == 'Debug'">False</PublishReadyToRun>
 		<PublishReadyToRun Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRun>
 		<PublishReadyToRunComposite Condition="'$(Configuration)' != 'Debug'">True</PublishReadyToRunComposite>
+		<SignAssembly>False</SignAssembly>
+		<AssemblyOriginatorKeyFile>E:\arm\secureboot_keys\lge\Certs\WOADEVICE-RootPK.cer</AssemblyOriginatorKeyFile>
 	</PropertyGroup>
 
 	<ItemGroup>
