@@ -36,6 +36,11 @@ namespace WOADeviceManager.Pages
                         PlatformID = DeviceManager.VAYU_PLATFORMID;
                         break;
                     }
+                case DeviceProduct.Unknown:
+                    {
+                        PlatformID = "UNKNOWN.HARDWARE.DETECTED.INVALID";
+                        break;
+                    }
             }
 
             if (DeviceManager.Device.IsInUFP)

@@ -169,6 +169,7 @@ namespace WOADeviceManager
                     CloseButtonText = "OK",
                     XamlRoot = _mainPage.XamlRoot
                 };
+
                 await dialog.ShowAsync();
             });
         }
@@ -250,7 +251,11 @@ namespace WOADeviceManager
         {
             if (DeviceManager.Device.AndroidDebugBridgeTransport != null)
             {
-                DeviceManager.Device.AndroidDebugBridgeTransport.Connect();
+                try
+                {
+                    DeviceManager.Device.AndroidDebugBridgeTransport.Connect();
+                }
+                catch { }
             }
         }
 

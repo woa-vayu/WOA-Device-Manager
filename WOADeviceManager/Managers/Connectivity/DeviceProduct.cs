@@ -2,6 +2,7 @@
 {
     public enum DeviceProduct
     {
-        Vayu
+        Vayu,
+        Unknown
     }
 }

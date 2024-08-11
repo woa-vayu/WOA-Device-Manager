@@ -1,11 +1,15 @@
 ﻿using FastBoot;
 using Microsoft.UI.Xaml.Controls;
 using System;
+using System.Formats.Tar;
+using System.IO;
 using System.IO.Compression;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Pickers;
+using WinRT.Interop;
 using WOADeviceManager.Managers;
 using WOADeviceManager.Managers.Connectivity;
 
@@ -187,38 +191,61 @@ namespace WOADeviceManager.Helpers
             }
         }
 
-        public static async Task<bool> BootTWRP()
+        public static async Task<bool> BootTWRP(string? TWRPFile = null)
         {
-            try
+            if (string.IsNullOrEmpty(TWRPFile))
             {
-                await new HttpClient().GetAsync("https://github.com");
-            }
-            catch
-            {
-                throw new Exception("Your computer is offline! We need to be able to reach the internet in order to download the TWRP image.");
-            }
+                try
+                {
+                    await new HttpClient().GetAsync("https://github.com");
+                }
+                catch
+                {
+                    throw new Exception("Your computer is offline! We need to be able to reach the internet in order to download the TWRP image.");
+                }
 
-            MainPage.SetStatus("Downloading TWRP...", Emoji: "⬇️");
+                MainPage.SetStatus("Downloading TWRP...", Emoji: "⬇️");
 
-            StorageFile? TWRP = null;
+                StorageFile? TWRP = null;
 
             if (DeviceManager.Device.Product == DeviceProduct.Vayu)
             {
                 TWRP = await ResourcesManager.RetrieveFile(ResourcesManager.DownloadableComponent.TWRP_VAYU, true);
             }
-            else
-            {
-                throw new Exception("Unknown device product");
+            else if (DeviceManager.Device.Product == DeviceProduct.Unknown)
+                {
+                    FileOpenPicker picker = new()
+                    {
+                        ViewMode = PickerViewMode.List,
+                        SuggestedStartLocation = PickerLocationId.Downloads,
+                        FileTypeFilter = { ".img" }
+                    };
+
+                    nint windowHandle = WindowNative.GetWindowHandle(App.mainWindow);
+                    InitializeWithWindow.Initialize(picker, windowHandle);
+
+                    StorageFile file = await picker.PickSingleFileAsync();
+                    if (file != null && File.Exists(file.Path))
+                    {
+                        TWRPFile = file.Path;
+                    }
+                }
+                else
+                {
+                    throw new Exception("Unknown device product");
+                }
+
+                if (TWRP == null)
+                {
+                    throw new Exception("Unknown file path");
+                }
+
+                TWRPFile = TWRP.Path;
+
+                MainPage.SetStatus("Rebooting the device to TWRP mode...", Emoji: "🔄️");
             }
 
-            if (TWRP == null)
-            {
-                throw new Exception("Unknown file path");
-            }
-
-            MainPage.SetStatus("Rebooting the device to TWRP mode...", Emoji: "🔄️");
-
-            return DeviceManager.Device.FastBootTransport.BootImageIntoRam(TWRP.Path);
+            return DeviceManager.Device.FastBootTransport.BootImageIntoRam(TWRPFile);
         }
 
         public static async Task<bool> BootUEFI(string? UEFIFile = null)
@@ -245,6 +272,24 @@ namespace WOADeviceManager.Helpers
                     }
 
                     UEFIFile = UEFI.Path;
+                }
+                else if (DeviceManager.Device.Product == DeviceProduct.Unknown)
+                {
+                    FileOpenPicker picker = new()
+                    {
+                        ViewMode = PickerViewMode.List,
+                        SuggestedStartLocation = PickerLocationId.Downloads,
+                        FileTypeFilter = { ".img" }
+                    };
+
+                    nint windowHandle = WindowNative.GetWindowHandle(App.mainWindow);
+                    InitializeWithWindow.Initialize(picker, windowHandle);
+
+                    StorageFile file = await picker.PickSingleFileAsync();
+                    if (file != null && File.Exists(file.Path))
+                    {
+                        UEFIFile = file.Path;
+                    }
                 }
                 else
                 {

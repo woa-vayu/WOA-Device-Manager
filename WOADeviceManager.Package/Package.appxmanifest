@@ -12,7 +12,7 @@
   <Identity
     Name="DuoWOA.DeviceManager"
     Publisher="CN=DuoWOA"
-    Version="1.0.7.0" />
+    Version="1.0.13.0" />
 
   <Properties>
     <DisplayName>WOA Device Manager</DisplayName>
