@@ -12,8 +12,6 @@ namespace WOADeviceManager.Managers
         public enum DownloadableComponent
         {
             DRIVERS_VAYU,
-            FD_VAYU,
-            FD_SECUREBOOT_DISABLED_VAYU,
             PARTED,
             TWRP_VAYU,
             UEFI_VAYU,
@@ -34,7 +32,7 @@ namespace WOADeviceManager.Managers
                     break;
 
                 case DownloadableComponent.TWRP_VAYU:
-                    downloadPath = "https://github.com/woa-vayu/POCOX3Pro-Guides/releases/download/Recoveries/shrp-3.2_12-vayu.img";
+                    downloadPath = "https://github.com/woa-vayu/POCOX3Pro-Guides/releases/download/Recoveries/twrp-3.7.1_12-vayu.img";
                     fileName = "shrp-3.2_12-vayu.img";
                     break;
                 case DownloadableComponent.UEFI_VAYU:
@@ -46,16 +44,6 @@ namespace WOADeviceManager.Managers
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
                     downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
                     fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.img";
-                    break;
-                case DownloadableComponent.FD_VAYU:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    break;
-                case DownloadableComponent.FD_SECUREBOOT_DISABLED_VAYU:
-                    releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
-                    downloadPath = $"https://github.com/woa-vayu/POCOX3Pro-Releases/releases/download/{releaseVersion}/POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
-                    fileName = $"POCO.X3.Pro.UEFI-v{releaseVersion}.Secure.Boot.Disabled.FD.for.making.your.own.Dual.Boot.Image.zip";
                     break;
                 case DownloadableComponent.DRIVERS_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();
