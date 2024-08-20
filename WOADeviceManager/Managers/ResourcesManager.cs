@@ -32,8 +32,8 @@ namespace WOADeviceManager.Managers
                     break;
 
                 case DownloadableComponent.TWRP_VAYU:
-                    downloadPath = "https://github.com/woa-vayu/POCOX3Pro-Guides/releases/download/Recoveries/twrp-3.7.1_12-vayu.img";
-                    fileName = "shrp-3.2_12-vayu.img";
+                    downloadPath = "https://github.com/woa-vayu/POCOX3Pro-Guides/raw/main/Files/twrp-3.7.1_12-vayu.img";
+                    fileName = "twrp-3.7.1_12-vayu.img";
                     break;
                 case DownloadableComponent.UEFI_VAYU:
                     releaseVersion = await HttpsUtils.GetLatestBSPReleaseVersion();

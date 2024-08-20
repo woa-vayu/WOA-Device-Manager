@@ -740,12 +740,6 @@ namespace WOADeviceManager.Managers
             }
             else
             {
-                try
-                {
-                    HandleFastbootDevice(ID, Name);
-                }
-                catch
-                {
                     Thread.Sleep(1000);
 
                     try
@@ -753,7 +747,7 @@ namespace WOADeviceManager.Managers
                         HandleADBDevice(ID, Name);
                     }
                     catch { }
-                }
+            
             }
         }
 

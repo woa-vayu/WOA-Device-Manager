@@ -305,8 +305,15 @@ namespace WOADeviceManager.Helpers
                 }
             }
 
+            await Task.Delay(5000);
             await ADBProcedures.EnableMassStorageMode();
 
+            await Task.Delay(5000);
+            if (DeviceManager.Device.State is DeviceState.TWRP_ADB_ENABLED)
+            {
+                await ADBProcedures.EnableMassStorageMode();
+
+            }
             while (DeviceManager.Device.State is not DeviceState.TWRP_MASS_STORAGE_ADB_ENABLED and not DeviceState.TWRP_MASS_STORAGE_ADB_DISABLED)
             {
                 await Task.Delay(1000);
